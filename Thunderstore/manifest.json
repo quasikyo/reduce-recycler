@@ -1,0 +1,11 @@
+{
+	"name": "ReduceRecycler",
+	"version_number": "0.1.0",
+	"website_url": "https://github.com/quasikyo/reduce-recycler",
+	"description": "Customize the behavior of the recycler equipment to shorten the time between uses.",
+	"dependencies": [
+		"bbepis-BepInExPack-5.4.2113",
+		"tristanmcpherson-R2API-5.0.5",
+		"Rune580-Risk_Of_Options-2.7.0"
+	]
+}
