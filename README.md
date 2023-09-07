@@ -1,5 +1,5 @@
 # ReduceRecycler
-Customize the behavior of the recycler equipment to shorten the time between uses.
+Sets Recycler cooldown to instant and adds the cooldown to the run timer.
 
 **Untested in multiplayer.**
 
@@ -11,7 +11,7 @@ Contact me on Discord (`quasikyo`) or submit a new issue [here](https://github.c
 
 ## FAQ
 
-#### Does the time added to the run timer reflect any equipment cooldown (fuel cells, Gesutre)?
+#### Does the time added to the run timer reflect any equipment cooldown (fuel cells, Gesture)?
 Yes.
 
 #### Does the config option work in stages without a teleporter (Hidden Realms, Commencement)?
