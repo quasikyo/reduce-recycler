@@ -20,17 +20,25 @@ namespace ReduceRecycler {
 			Log.Info($"Performing setup for {nameof(ReduceRecycler)}");
 
 			On.RoR2.EquipmentSlot.FireRecycle += (On.RoR2.EquipmentSlot.orig_FireRecycle orig, EquipmentSlot self) => {
-				bool result = orig(self);
-				// Game state doesn't update quick enough OR until after this hook is done running (weird)
-				StartCoroutine(ResetRecyclerCooldown(self));
-				return result;
-			};
+				bool didRecyclerTransmute = orig(self);
+				if (didRecyclerTransmute) {
+					// Game state doesn't update quick enough OR until after this hook is done running (weird)
+					StartCoroutine(ResetRecyclerCooldown(self));
+				}
 
+				return didRecyclerTransmute;
+			};
 		}
 
 		private IEnumerator ResetRecyclerCooldown(EquipmentSlot equipment) {
 			yield return new WaitForSeconds(0.5f);
-			equipment.characterBody.inventory.DeductActiveEquipmentCooldown(equipment.cooldownTimer);
+			float cooldownSeconds = equipment.cooldownTimer;
+			float stopwatchCurrentSeconds = Run.instance.GetRunStopwatch();
+
+			if (!float.IsInfinity(cooldownSeconds)) {
+				equipment.characterBody.inventory.DeductActiveEquipmentCooldown(cooldownSeconds);
+				Run.instance.SetRunStopwatch(stopwatchCurrentSeconds + cooldownSeconds);
+			}
 		}
 	}
 }
