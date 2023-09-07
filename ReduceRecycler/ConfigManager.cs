@@ -10,7 +10,8 @@ namespace ReduceRecycler {
 
 		internal static ConfigEntry<bool> EnableOnlyAfterTeleporter { get; set; }
 
-		static ConfigManager() {
+		// static ConfigManager() {
+		internal static void Init() {
 			OptionsConfig = new ConfigFile(Paths.ConfigPath + "\\ReduceRecycler.cfg", true);
 			ModSettingsManager.SetModDescription("Customize the behavior of the recycler equipment to shorten the time between uses.");
 
@@ -22,5 +23,6 @@ namespace ReduceRecycler {
 			);
 			ModSettingsManager.AddOption(new CheckBoxOption(EnableOnlyAfterTeleporter));
 		}
+
 	}
 }

@@ -18,6 +18,7 @@ namespace ReduceRecycler {
 		public void Awake() {
 			Log.Init(Logger);
 			Log.Info($"Performing setup for {nameof(ReduceRecycler)}");
+			ConfigManager.Init();
 
 			On.RoR2.EquipmentSlot.FireRecycle += (On.RoR2.EquipmentSlot.orig_FireRecycle orig, EquipmentSlot self) => {
 				bool didRecyclerTransmute = orig(self);
