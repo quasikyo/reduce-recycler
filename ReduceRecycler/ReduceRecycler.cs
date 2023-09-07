@@ -6,7 +6,7 @@ using BepInEx;
 using RoR2;
 
 namespace ReduceRecycler {
-	// [BepInDependency("com.rune580.riskofoptions")]
+	[BepInDependency("com.rune580.riskofoptions")]
 	[BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 	public class ReduceRecycler : BaseUnityPlugin {
 
@@ -25,7 +25,6 @@ namespace ReduceRecycler {
 					// Game state doesn't update quick enough OR until after this hook is done running (weird)
 					StartCoroutine(ResetRecyclerCooldown(self));
 				}
-
 				return didRecyclerTransmute;
 			};
 		}
@@ -35,7 +34,13 @@ namespace ReduceRecycler {
 			float cooldownSeconds = equipment.cooldownTimer;
 			float stopwatchCurrentSeconds = Run.instance.GetRunStopwatch();
 
-			if (!float.IsInfinity(cooldownSeconds)) {
+			bool isNotInfinity = !float.IsInfinity(cooldownSeconds);
+			bool isTeleporterFinished = TeleporterInteraction.instance.isCharged;
+			bool isTeleporterRelevant = ConfigManager.EnableOnlyAfterTeleporter.Value;
+			// discrete math, relevancy implies a need for a charged TP
+			bool allowCooldown = !isTeleporterRelevant || isTeleporterFinished;
+			bool doRemoveCooldown = isNotInfinity && allowCooldown;
+			if (doRemoveCooldown) {
 				equipment.characterBody.inventory.DeductActiveEquipmentCooldown(cooldownSeconds);
 				Run.instance.SetRunStopwatch(stopwatchCurrentSeconds + cooldownSeconds);
 			}
