@@ -4,16 +4,18 @@ using UnityEngine;
 
 using BepInEx;
 using RoR2;
+using R2API.Utils;
 
 namespace ReduceRecycler {
 	[BepInDependency("com.rune580.riskofoptions")]
+	[NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
 	[BepInPlugin(PluginGUID, PluginName, PluginVersion)]
 	public class ReduceRecycler : BaseUnityPlugin {
 
 		public const string PluginGUID = PluginAuthor + "." + PluginName;
 		public const string PluginAuthor = "quasikyo";
 		public const string PluginName = "ReduceRecycler";
-		public const string PluginVersion = "0.1.0";
+		public const string PluginVersion = "1.0.0";
 
 		public void Awake() {
 			Log.Init(Logger);

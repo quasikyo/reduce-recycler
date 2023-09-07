@@ -1,6 +1,6 @@
 {
 	"name": "ReduceRecycler",
-	"version_number": "0.1.0",
+	"version_number": "1.0.0",
 	"website_url": "https://github.com/quasikyo/reduce-recycler",
 	"description": "Customize the behavior of the recycler equipment to shorten the time between uses.",
 	"dependencies": [
