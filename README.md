@@ -19,3 +19,6 @@ Yes.
 
 #### Does the config option work in stages without a teleporter (Hidden Realms, Commencement)?
 No.
+
+#### If I have multiple fuel cells, will the mod only activate when the last charge is used?
+Yes.
