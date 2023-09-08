@@ -15,7 +15,7 @@ namespace ReduceRecycler {
 		public const string PluginGUID = PluginAuthor + "." + PluginName;
 		public const string PluginAuthor = "quasikyo";
 		public const string PluginName = "ReduceRecycler";
-		public const string PluginVersion = "1.1.0";
+		public const string PluginVersion = "1.1.1";
 
 		public void Awake() {
 			Log.Init(Logger);
