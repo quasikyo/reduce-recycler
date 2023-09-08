@@ -3,6 +3,9 @@ Sets Recycler cooldown to instant and adds the cooldown to the run timer.
 
 **Untested in multiplayer.**
 
+## Credits
+- Boof, for initial mod concept and in-game general/edge-case testing
+
 ## Configuration
 - Whether or not no-cooldown should apply only after teleporter
 

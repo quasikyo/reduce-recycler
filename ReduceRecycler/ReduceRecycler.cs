@@ -15,7 +15,7 @@ namespace ReduceRecycler {
 		public const string PluginGUID = PluginAuthor + "." + PluginName;
 		public const string PluginAuthor = "quasikyo";
 		public const string PluginName = "ReduceRecycler";
-		public const string PluginVersion = "1.0.1";
+		public const string PluginVersion = "1.1.0";
 
 		public void Awake() {
 			Log.Init(Logger);
@@ -37,16 +37,28 @@ namespace ReduceRecycler {
 			float cooldownSeconds = equipment.cooldownTimer;
 			float stopwatchCurrentSeconds = Run.instance.GetRunStopwatch();
 
-			bool isNotInfinity = !float.IsInfinity(cooldownSeconds);
+			bool isInfinity = float.IsInfinity(cooldownSeconds);
+			if (isInfinity) yield break;
+
+			bool isOutOfCharges = GetEquipmentCharges(equipment) == 0;
+
+			// discrete math, relevancy implies a need for a charged TP
 			bool isTeleporterFinished = TeleporterInteraction.instance.isCharged;
 			bool isTeleporterRelevant = ConfigManager.EnableOnlyAfterTeleporter.Value;
-			// discrete math, relevancy implies a need for a charged TP
 			bool allowCooldown = !isTeleporterRelevant || isTeleporterFinished;
-			bool doRemoveCooldown = isNotInfinity && allowCooldown;
+
+			bool doRemoveCooldown = isOutOfCharges && allowCooldown;
 			if (doRemoveCooldown) {
 				equipment.characterBody.inventory.DeductActiveEquipmentCooldown(cooldownSeconds);
 				Run.instance.SetRunStopwatch(stopwatchCurrentSeconds + cooldownSeconds);
 			}
+		}
+
+		private int GetEquipmentCharges(EquipmentSlot equipmentSlot) {
+			Inventory inventory = equipmentSlot.characterBody.inventory;
+			uint slot = inventory.activeEquipmentSlot;
+			EquipmentState state = inventory.GetEquipment(slot);
+			return state.charges;
 		}
 	}
 }
