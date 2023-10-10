@@ -19,7 +19,7 @@ namespace ReduceRecycler {
 				"Behavior",
 				"Enable Only After Teleporter",
 				false,
-				"Enable no-cooldown only after the teleporter for the stage has been completed."
+				"Enable no-cooldown only after the teleporter for the stage has been completed. For stage without a teleporter (Hidden Realms, Void Fields, Commencement), this just makes the Recycler behave as normal."
 			);
 			ModSettingsManager.AddOption(new CheckBoxOption(EnableOnlyAfterTeleporter));
 		}

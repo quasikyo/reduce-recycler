@@ -20,5 +20,5 @@ Yes.
 #### If I have multiple fuel cells, will the mod only activate when the last charge is used?
 Yes.
 
-#### Does the config option work in stages without a teleporter (Hidden Realms, Commencement)?
-No.
+#### Does the config option work in stages without a teleporter (Hidden Realms, Void Fields, Commencement)?
+Yes, but enabling the config option will simply make the Recycler behave as normal.
